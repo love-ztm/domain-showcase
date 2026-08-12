@@ -5,6 +5,25 @@
 // ── State ──────────────────────────────────────────────
 let siteData = null;
 
+// ── URL helpers ────────────────────────────────────────
+function urlHost(url) {
+  try {
+    if (!url || !url.startsWith('http')) return null;
+    return new URL(url).hostname.replace(/^www\./, '');
+  } catch (e) { return null; }
+}
+
+// ── Favicon follows logoUrl ────────────────────────────
+function updateFavicon() {
+  const link = document.getElementById('site-favicon');
+  if (!link) return;
+  const logoUrl = (siteData && siteData.hero && siteData.hero.logoUrl) || '';
+  if (logoUrl) {
+    const sep = logoUrl.includes('?') ? '&' : '?';
+    link.href = logoUrl + sep + '_=' + Date.now();
+  }
+}
+
 // ── Init ───────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', async () => {
   await loadContent();
@@ -132,16 +151,14 @@ function renderContent() {
 
   // Links
   if (d.links) {
-    const linkIcons = {
-      github: '🐙', twitter: '🐦', linkedin: '💼', mail: '📧',
-      website: '🌐', discord: '💬', youtube: '📺', blog: '✍️'
-    };
-    const linksHtml = d.links.map(l =>
-      `<a href="${l.url}" class="link-card fade-in" target="_blank" rel="noopener">
-        <div class="link-icon">${linkIcons[l.icon] || '🔗'}</div>
+    const linksHtml = d.links.map(l => {
+      const host = urlHost(l.url);
+      const favicon = host ? `https://www.google.com/s2/favicons?domain=${host}&sz=64` : '';
+      return `<a href="${l.url}" class="link-card fade-in" target="_blank" rel="noopener">
+        <div class="link-icon">${favicon ? `<img src="${favicon}" alt="" />` : '🔗'}</div>
         <div class="link-name">${l.name}</div>
-      </a>`
-    ).join('');
+      </a>`;
+    }).join('');
     document.getElementById('links-grid').innerHTML = linksHtml;
   }
 

@@ -631,6 +631,12 @@ body {
   justify-content: center;
   font-size: 1.2rem;
   flex-shrink: 0;
+  overflow: hidden;
+}
+.link-icon img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
 }
 
 .link-name {
