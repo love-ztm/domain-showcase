@@ -29,6 +29,17 @@ async function loadContent() {
   }
 }
 
+// ── Favicon follows logoUrl ────────────────────────────
+function updateFavicon() {
+  const link = document.getElementById('site-favicon');
+  if (!link) return;
+  const logoUrl = (siteData && siteData.hero && siteData.hero.logoUrl) || '';
+  if (logoUrl) {
+    const sep = logoUrl.includes('?') ? '&' : '?';
+    link.href = logoUrl + sep + '_=' + Date.now();
+  }
+}
+
 // ── Render all sections ────────────────────────────────
 function renderContent() {
   if (!siteData) return;
@@ -54,6 +65,9 @@ function renderContent() {
       logoImg.classList.remove('active');
     }
   }
+
+  // Favicon
+  updateFavicon();
 
   // Hero
   if (d.hero) {

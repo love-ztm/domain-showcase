@@ -442,6 +442,7 @@ async function saveContent() {
     if (json.ok) {
       updateFavicon();
       showToast('✅ 内容保存成功！');
+      updateFavicon();
       document.getElementById('save-status').textContent = '已保存 ✓';
       setTimeout(() => { document.getElementById('save-status').textContent = ''; }, 3000);
     } else if (res.status === 401) {
