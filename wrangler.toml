@@ -1,0 +1,13 @@
+name = "domain-showcase"
+compatibility_date = "2024-09-23"
+
+# Cloudflare Pages 配置
+# 部署命令: npx wrangler pages deploy public/
+
+# KV 命名空间绑定
+# 首次使用前需创建 KV namespace:
+#   npx wrangler kv namespace create SITE_CONTENT
+# 然后将返回的 id 填入下方
+[[kv_namespaces]]
+binding = "SITE_CONTENT"
+id = "<YOUR_KV_NAMESPACE_ID>"

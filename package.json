@@ -1,0 +1,22 @@
+{
+  "name": "domain-showcase",
+  "version": "1.0.0",
+  "description": "Tech-themed personal domain showcase for oooooooooooo.cc.cd",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "pages:dev": "npx wrangler pages dev public/ --kv=SITE_CONTENT",
+    "pages:deploy": "npx wrangler pages deploy public/",
+    "kv:init": "npx wrangler kv namespace create SITE_CONTENT",
+    "docker:build": "docker build -t domain-showcase .",
+    "docker:run": "docker run -d -p 3000:3000 --name domain-showcase domain-showcase"
+  },
+  "keywords": ["domain", "showcase", "portfolio"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^2.3.0",
+    "express": "^5.2.1"
+  }
+}

@@ -1,0 +1,126 @@
+{
+  "domain": "oooooooooooo.cc.cd",
+  "hero": {
+    "title": "oooooooooooo.cc.cd",
+    "subtitle": "Welcome to the Future",
+    "description": "A next-generation digital identity hub for the modern tech era.",
+    "particles": true
+  },
+  "about": {
+    "title": "About Me",
+    "bio": "Full-stack developer & digital architect. Building the web of tomorrow with cutting-edge technologies.",
+    "avatar": "",
+    "stats": [
+      {
+        "label": "Years Experience",
+        "value": "8+"
+      },
+      {
+        "label": "Projects",
+        "value": "50+"
+      },
+      {
+        "label": "Happy Clients",
+        "value": "30+"
+      }
+    ]
+  },
+  "skills": [
+    {
+      "name": "React / Next.js",
+      "level": 95,
+      "icon": "⚛️"
+    },
+    {
+      "name": "Node.js / Express",
+      "level": 90,
+      "icon": "🟩"
+    },
+    {
+      "name": "TypeScript",
+      "level": 88,
+      "icon": "🔷"
+    },
+    {
+      "name": "Python / Django",
+      "level": 85,
+      "icon": "🐍"
+    },
+    {
+      "name": "Docker / K8s",
+      "level": 80,
+      "icon": "🐳"
+    },
+    {
+      "name": "Cloud (AWS/GCP)",
+      "level": 78,
+      "icon": "☁️"
+    }
+  ],
+  "projects": [
+    {
+      "title": "Neural Dashboard",
+      "description": "AI-powered analytics platform with real-time data visualization and predictive insights.",
+      "tech": [
+        "React",
+        "Python",
+        "TensorFlow"
+      ],
+      "url": "#",
+      "image": ""
+    },
+    {
+      "title": "CloudForge CLI",
+      "description": "Developer toolkit for rapid cloud infrastructure provisioning and deployment automation.",
+      "tech": [
+        "Go",
+        "Docker",
+        "AWS"
+      ],
+      "url": "#",
+      "image": ""
+    },
+    {
+      "title": "Quantum Chat",
+      "description": "End-to-end encrypted messaging platform with decentralized architecture.",
+      "tech": [
+        "Rust",
+        "WebSocket",
+        "Crypto"
+      ],
+      "url": "#",
+      "image": ""
+    }
+  ],
+  "links": [
+    {
+      "name": "GitHub",
+      "url": "https://github.com",
+      "icon": "github"
+    },
+    {
+      "name": "Twitter",
+      "url": "https://twitter.com",
+      "icon": "twitter"
+    },
+    {
+      "name": "LinkedIn",
+      "url": "https://linkedin.com",
+      "icon": "linkedin"
+    },
+    {
+      "name": "Email",
+      "url": "mailto:hello@oooooooooooo.cc.cd",
+      "icon": "mail"
+    }
+  ],
+  "footer": {
+    "text": "© 2026 oooooooooooo.cc.cd — All rights reserved.",
+    "showTime": true
+  },
+  "theme": {
+    "primaryColor": "#00f0ff",
+    "accentColor": "#7b2fff",
+    "bgStyle": "dark"
+  }
+}

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>管理后台 — oooooooooooo.cc.cd</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/admin.css" />
+</head>
+<body>
+  <div class="admin-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <span class="sidebar-logo">⚙️</span>
+        <h2>管理后台</h2>
+      </div>
+      <nav class="sidebar-nav">
+        <button class="sidebar-btn active" data-section="hero">🏠 首屏</button>
+        <button class="sidebar-btn" data-section="about">👤 关于</button>
+        <button class="sidebar-btn" data-section="skills">⚡ 技能</button>
+        <button class="sidebar-btn" data-section="projects">🚀 项目</button>
+        <button class="sidebar-btn" data-section="links">🔗 链接</button>
+        <button class="sidebar-btn" data-section="footer">📋 页脚</button>
+        <button class="sidebar-btn" data-section="theme">🎨 主题</button>
+        <button class="sidebar-btn" data-section="raw">📝 JSON编辑</button>
+      </nav>
+      <div class="sidebar-footer">
+        <a href="/" class="sidebar-link" target="_blank">🌐 查看站点</a>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="admin-main">
+      <header class="admin-header">
+        <h1 id="section-title">首屏设置</h1>
+        <div class="header-actions">
+          <span class="save-status" id="save-status"></span>
+          <button class="btn btn-save" id="btn-save" onclick="saveContent()">💾 保存更改</button>
+        </div>
+      </header>
+
+      <div class="admin-content" id="admin-content">
+        <!-- Dynamic form content loaded here -->
+      </div>
+    </main>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
+
+  <script src="/js/admin.js"></script>
+</body>
+</html>
