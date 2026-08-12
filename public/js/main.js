@@ -44,6 +44,17 @@ function renderContent() {
   document.getElementById('nav-domain').textContent = d.domain || 'oooooooooooo.cc.cd';
   document.title = d.domain || 'oooooooooooo.cc.cd';
 
+  // Logo
+  const logoImg = document.getElementById('nav-logo-img');
+  if (logoImg) {
+    if (d.hero && d.hero.logoUrl) {
+      logoImg.src = d.hero.logoUrl;
+      logoImg.classList.add('active');
+    } else {
+      logoImg.classList.remove('active');
+    }
+  }
+
   // Hero
   if (d.hero) {
     document.getElementById('hero-title').textContent = d.hero.title || d.domain;

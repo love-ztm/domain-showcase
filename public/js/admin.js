@@ -67,6 +67,11 @@ function renderHero() {
   const h = siteData.hero || {};
   return `
     <div class="form-group">
+      <label class="form-label">网站 Logo URL（留空不显示）</label>
+      <input class="form-input" id="hero-logo" value="${esc(h.logoUrl || '')}" placeholder="https://example.com/logo.png" />
+      <p class="form-hint">建议尺寸 32×32 或 64×64，支持 PNG/SVG</p>
+    </div>
+    <div class="form-group">
       <label class="form-label">域名标题</label>
       <input class="form-input" id="hero-title" value="${esc(h.title || siteData.domain || '')}" />
     </div>
@@ -373,6 +378,7 @@ function collectFormData() {
     case 'hero':
       siteData.domain = val('domain-name') || siteData.domain;
       siteData.hero = siteData.hero || {};
+      siteData.hero.logoUrl = val('hero-logo');
       siteData.hero.title = val('hero-title');
       siteData.hero.subtitle = val('hero-subtitle');
       siteData.hero.description = val('hero-desc');
