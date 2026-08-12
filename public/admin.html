@@ -50,6 +50,26 @@
   <!-- Toast -->
   <div class="toast" id="toast"></div>
 
+  <!-- Login Overlay -->
+  <div class="login-overlay" id="login-overlay">
+    <div class="login-card">
+      <div class="login-logo">🔐</div>
+      <h2 class="login-title">管理后台登录</h2>
+      <form id="login-form" onsubmit="return handleLogin(event)">
+        <div class="form-group">
+          <label class="form-label">用户名</label>
+          <input class="form-input" id="login-user" type="text" autocomplete="username" required />
+        </div>
+        <div class="form-group">
+          <label class="form-label">密码</label>
+          <input class="form-input" id="login-pass" type="password" autocomplete="current-password" required />
+        </div>
+        <p class="login-error" id="login-error"></p>
+        <button class="btn btn-save" type="submit" id="login-btn">🔑 登录</button>
+      </form>
+    </div>
+  </div>
+
   <script src="/js/admin.js"></script>
 </body>
 </html>

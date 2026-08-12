@@ -4,13 +4,72 @@
 
 let siteData = {};
 let currentSection = 'hero';
+let authToken = localStorage.getItem('admin_token') || '';
 
 // ── Init ───────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', async () => {
-  await loadContent();
-  initSidebar();
-  renderSection('hero');
+  if (authToken) {
+    hideLogin();
+    await loadContent();
+    initSidebar();
+    renderSection('hero');
+  } else {
+    showLogin();
+  }
 });
+
+// ── Login ──────────────────────────────────────────────
+function showLogin() {
+  document.getElementById('login-overlay').classList.remove('hidden');
+  document.querySelector('.admin-layout').style.display = 'none';
+}
+
+function hideLogin() {
+  document.getElementById('login-overlay').classList.add('hidden');
+  document.querySelector('.admin-layout').style.display = '';
+}
+
+async function handleLogin(e) {
+  e.preventDefault();
+  const user = document.getElementById('login-user').value;
+  const pass = document.getElementById('login-pass').value;
+  const errEl = document.getElementById('login-error');
+  const btn = document.getElementById('login-btn');
+
+  btn.textContent = '⏳ 登录中...';
+  btn.disabled = true;
+  errEl.textContent = '';
+
+  try {
+    const res = await fetch('/api/auth', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username: user, password: pass }),
+    });
+    const json = await res.json();
+    if (json.ok) {
+      authToken = json.token;
+      localStorage.setItem('admin_token', authToken);
+      hideLogin();
+      await loadContent();
+      initSidebar();
+      renderSection('hero');
+    } else {
+      errEl.textContent = json.error || '登录失败';
+    }
+  } catch (e) {
+    errEl.textContent = '网络错误';
+  } finally {
+    btn.textContent = '🔑 登录';
+    btn.disabled = false;
+  }
+}
+
+function logout() {
+  authToken = '';
+  localStorage.removeItem('admin_token');
+  showLogin();
+}
 
 // ── Load content ───────────────────────────────────────
 async function loadContent() {
@@ -356,7 +415,10 @@ async function saveContent() {
   try {
     const res = await fetch('/api/content', {
       method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + authToken,
+      },
       body: JSON.stringify(siteData),
     });
     const json = await res.json();
@@ -364,6 +426,9 @@ async function saveContent() {
       showToast('✅ 内容保存成功！');
       document.getElementById('save-status').textContent = '已保存 ✓';
       setTimeout(() => { document.getElementById('save-status').textContent = ''; }, 3000);
+    } else if (res.status === 401) {
+      showToast('❌ 登录已过期，请重新登录', true);
+      logout();
     } else {
       showToast('❌ ' + json.error, true);
     }

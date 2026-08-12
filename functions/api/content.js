@@ -72,8 +72,24 @@ const DEFAULT_CONTENT = {
 const CORS_HEADERS = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Methods': 'GET, PUT, PATCH, OPTIONS',
-  'Access-Control-Allow-Headers': 'Content-Type',
+  'Access-Control-Allow-Headers': 'Content-Type, Authorization',
 };
+
+// Verify auth token for write operations
+async function verifyAuth(env, request) {
+  const authHeader = request.headers.get('Authorization') || '';
+  const token = authHeader.replace(/^Bearer\s+/i, '').trim();
+  if (!token) return false;
+  try {
+    const record = await env.SITE_CONTENT.get(`auth:${token}`, { type: 'json' });
+    if (!record) return false;
+    // Check 24h expiry
+    if (Date.now() - record.created > 86400000) return false;
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
 
 // GET /api/content — Read all content
 export async function onRequestGet(context) {
@@ -95,6 +111,14 @@ export async function onRequestGet(context) {
 // PUT /api/content — Replace entire content
 export async function onRequestPut(context) {
   const { env, request } = context;
+
+  // Auth check
+  if (!(await verifyAuth(env, request))) {
+    return new Response(JSON.stringify({ ok: false, error: '未授权，请先登录' }), {
+      status: 401,
+      headers: { 'Content-Type': 'application/json', ...CORS_HEADERS },
+    });
+  }
 
   try {
     const body = await request.json();
@@ -124,6 +148,14 @@ export async function onRequestPut(context) {
 export async function onRequestPatch(context) {
   const { env, request, params } = context;
   const section = params.section;
+
+  // Auth check
+  if (!(await verifyAuth(env, request))) {
+    return new Response(JSON.stringify({ ok: false, error: '未授权，请先登录' }), {
+      status: 401,
+      headers: { 'Content-Type': 'application/json', ...CORS_HEADERS },
+    });
+  }
 
   try {
     const body = await request.json();
