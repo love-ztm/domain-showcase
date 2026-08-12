@@ -71,12 +71,29 @@ function logout() {
   showLogin();
 }
 
+// ── Favicon ────────────────────────────────────────────
+function updateFavicon() {
+  const link = document.getElementById('site-favicon');
+  if (!link) return;
+  const logoUrl = (siteData.hero && siteData.hero.logoUrl) || '';
+  if (logoUrl) {
+    const sep = logoUrl.includes('?') ? '&' : '?';
+    link.href = logoUrl + sep + '_=' + Date.now();
+  } else {
+    // 默认蓝色方块
+    link.href = "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%2300f0ff'/></svg>";
+  }
+}
+
 // ── Load content ───────────────────────────────────────
 async function loadContent() {
   try {
     const res = await fetch('/api/content');
     const json = await res.json();
-    if (json.ok) siteData = json.data;
+    if (json.ok) {
+      siteData = json.data;
+      updateFavicon();
+    }
   } catch (e) {
     showToast('加载内容失败', true);
   }
@@ -423,6 +440,7 @@ async function saveContent() {
     });
     const json = await res.json();
     if (json.ok) {
+      updateFavicon();
       showToast('✅ 内容保存成功！');
       document.getElementById('save-status').textContent = '已保存 ✓';
       setTimeout(() => { document.getElementById('save-status').textContent = ''; }, 3000);
