@@ -7,6 +7,7 @@ const DEFAULT_CONTENT = {
   "hero": {
     "title": "oooooooooooo.cc.cd",
     "subtitle": "Welcome to the Future",
+    "subtitleUrl": "",
     "description": "A next-generation digital identity hub for the modern tech era.",
     "particles": true,
     "logoUrl": ""

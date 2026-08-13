@@ -230,6 +230,18 @@ body {
   text-transform: uppercase;
   margin-bottom: 12px;
   animation: fadeInUp 0.8s ease 0.2s both;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.hero-subtitle.linked {
+  color: var(--primary);
+  cursor: pointer;
+  transition: text-shadow 0.3s ease;
+}
+
+.hero-subtitle.linked:hover {
+  text-shadow: 0 0 20px var(--primary);
 }
 
 .hero-desc {

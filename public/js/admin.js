@@ -156,6 +156,11 @@ function renderHero() {
       <input class="form-input" id="hero-subtitle" value="${esc(h.subtitle || '')}" />
     </div>
     <div class="form-group">
+      <label class="form-label">副标题链接</label>
+      <input class="form-input" id="hero-subtitle-url" placeholder="https://..." value="${esc(h.subtitleUrl || '')}" />
+      <p class="form-hint">留空则副标题不可点击</p>
+    </div>
+    <div class="form-group">
       <label class="form-label">描述</label>
       <textarea class="form-textarea" id="hero-desc">${esc(h.description || '')}</textarea>
     </div>
@@ -465,6 +470,7 @@ function collectFormData() {
       siteData.hero.logoUrl = val('hero-logo');
       siteData.hero.title = val('hero-title');
       siteData.hero.subtitle = val('hero-subtitle');
+      siteData.hero.subtitleUrl = val('hero-subtitle-url');
       siteData.hero.description = val('hero-desc');
       break;
 

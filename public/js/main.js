@@ -92,7 +92,15 @@ function renderContent() {
   if (d.hero) {
     document.getElementById('hero-title').textContent = d.hero.title || d.domain;
     document.getElementById('hero-title').setAttribute('data-text', d.hero.title || d.domain);
-    document.getElementById('hero-subtitle').textContent = d.hero.subtitle || '';
+    const subtitleEl = document.getElementById('hero-subtitle');
+    subtitleEl.textContent = d.hero.subtitle || '';
+    if (d.hero.subtitleUrl) {
+      subtitleEl.href = d.hero.subtitleUrl;
+      subtitleEl.classList.add('linked');
+    } else {
+      subtitleEl.removeAttribute('href');
+      subtitleEl.classList.remove('linked');
+    }
     document.getElementById('hero-desc').textContent = d.hero.description || '';
   }
 
