@@ -193,23 +193,22 @@ body {
 }
 
 .hero-badge {
-  display: block;
+  display: inline-block;
   font-family: var(--font-mono);
   font-size: 0.7rem;
   letter-spacing: 2px;
   color: var(--primary);
   border: 1px solid var(--border);
-  padding: 4px 16px;
+  padding: 4px 14px;
   border-radius: 16px;
   margin: 0 auto 32px;
-  min-width: 100px;
-  text-align: center;
   animation: fadeInUp 0.8s ease;
+  width: fit-content;
 }
 
 @media (min-width: 900px) {
   .hero-content {
-    text-align: left;
+    text-align: center;
   }
 }
 
