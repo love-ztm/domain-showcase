@@ -8,6 +8,7 @@ const DEFAULT_CONTENT = {
     "title": "oooooooooooo.cc.cd",
     "subtitle": "Welcome to the Future",
     "subtitleUrl": "",
+    "titleUrl": "",
     "description": "A next-generation digital identity hub for the modern tech era.",
     "particles": true,
     "logoUrl": ""

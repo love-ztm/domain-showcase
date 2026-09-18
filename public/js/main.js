@@ -90,8 +90,18 @@ function renderContent() {
 
   // Hero
   if (d.hero) {
-    document.getElementById('hero-title').textContent = d.hero.title || d.domain;
-    document.getElementById('hero-title').setAttribute('data-text', d.hero.title || d.domain);
+  // Title
+  const titleEl = document.getElementById('hero-title');
+  titleEl.textContent = d.hero.title || d.domain;
+  titleEl.setAttribute('data-text', d.hero.title || d.domain);
+  if (d.hero.titleUrl) {
+    titleEl.href = d.hero.titleUrl;
+    titleEl.classList.add('linked');
+  } else {
+    titleEl.removeAttribute('href');
+    titleEl.classList.remove('linked');
+  }
+
     const subtitleEl = document.getElementById('hero-subtitle');
     subtitleEl.textContent = d.hero.subtitle || '';
     if (d.hero.subtitleUrl) {

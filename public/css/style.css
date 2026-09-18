@@ -211,6 +211,17 @@ body {
   margin-bottom: 16px;
   animation: fadeInUp 0.8s ease 0.1s both;
   position: relative;
+  text-decoration: none;
+  color: inherit;
+}
+
+.hero-title.linked {
+  cursor: pointer;
+  transition: text-shadow 0.3s ease;
+}
+
+.hero-title.linked:hover {
+  text-shadow: 0 0 30px var(--primary);
 }
 
 /* Glitch effect */
